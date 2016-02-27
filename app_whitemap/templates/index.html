@@ -1,0 +1,114 @@
+{% extends "_base.html" %}
+{% block bodycontent %}
+  <div id="drag-area">
+    <p>アップロードするファイルをドロップ</p>
+    <p>または</p>
+    <div id="btn-group">
+      <input type="file" multiple="multiple"/>
+      <button id="btn">ファイルを選択</button>
+      <button id="make-whitemap">白地図を作成</button>
+    </div>  <!-- end btn-group -->
+  </div>  <!-- end drag-area -->
+  <div id="img-whitemap">
+  </div>
+  <div id="uploaded-routes">
+    Loding...
+  </div>
+
+  <style type="text/css">
+    #drag-area{
+      height: 20%;
+      background-color: #dde;
+    }
+    #input[type="file"]{
+      display: none;
+    }
+  </style>
+
+  <script type="text/javascript">
+    $(function(){
+      /*=====================================
+      ファイルをドロップしたときの処理
+      =====================================*/
+      $('#drag-area').bind('drop',function(e){
+        //デフォルトの挙動を停止
+        e.preventDefault();
+        //ファイル情報を取得
+        var files = e.originalEvent.detaTransfer.files;
+        uploadFiles(files);
+      }).bind('dragenter',function(){
+        //デフォルトの挙動を停止
+        return false;
+      }).bind('dragover',function(){
+        //デフォルトの挙動を停止
+        return false;
+      });
+      /*=====================================
+      ダミーボタンを押したときの処理
+      =====================================*/
+      $('#btn').click(function(){
+        //ダミーボタンとinput[type="file"]を連動
+        $('input[type="file"]').click();
+      });
+      $('input[type="file"]').change(function(){
+        //ファイルを取得
+        var files = this.files;
+        uploadFiles(files);
+      });
+    });
+    /*=====================================
+    アップロード処理
+    =====================================*/
+    function uploadFiles(files){
+      //FormDataオブジェクトを用意
+      var fd = FormData();
+      //ファイルの個数を取得
+      var fileLength = files.length;
+      //ファイル情報を追加
+      for(var i=0; i<fileLength; i++){
+        fd.append(files[i].name,files[i]);
+      }
+      //Ajaxでアップロード処理するファイルへ内容をわたす
+      $.ajax({
+        url:'/upload',
+        type:'POST',
+        data:fd,
+        processData:false,
+        contentType:false,
+        success:function(data){
+          console.log('ファイルがアップロードされました。')
+        }
+      });
+    }
+
+    /*=====================================
+    img-whitemapを表示
+    =====================================*/
+  function updateImgWM(){
+    $.ajax({
+      url:'/img-whitemap',
+      cache:false,
+      success:function(img){
+      $('#img-whitemap').html(img);
+      }
+    });
+  }
+  $('#make-whitemap').click(function(){
+    makeImagWM();
+  });
+    /*=====================================
+    uploaded-routesを更新
+    =====================================*/
+  function updateRoutes(){
+    $.ajax({
+      url:'/upload',
+      cache:false,
+      success:function(routes){
+        $('#uploaded-routes').html(routes);
+      }
+    });
+    setTimeout('updateRoutes()',4000);
+  }
+  updateRoutes();
+  </script>
+{% endblock %}
