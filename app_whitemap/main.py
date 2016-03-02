@@ -1,5 +1,4 @@
-import sys
-sys.path.insert(0,'libs')
+import random
 import os
 import binascii
 import logging
@@ -71,16 +70,20 @@ class WhitemapHandler(SessionEnabledHandler):
         xs = map(lambda x:x*width/mx, xs)
         ys = map(lambda y:y*height/my,ys)
         height = int(height)
-  
+
         img = Image.new('RGB',(width+10,height+10),(255,255,255))
         for i in range(0,len(xs)):
             img.putpixel((int(xs[i])+5,height-int(ys[i])+5),(0,0,0))
+        #width,height = 100,100
+        #img = Image.new('RGB',(width+1,height+1),(255,255,255))
+        #for i in range(0,1000):
+        #    img.putpixel((random.randint(0,100),random.randint(0,100)),(0,0,0))
         output = StringIO()
         img.save(output, format='png')
         imagelayer = output.getvalue()
         output.close()
         self.response.headers['Content-Type'] = 'image/png'
-        self.response.write(imagelayer)
+        self.response.out.write(imagelayer)
 
 class UpdateHandler(SessionEnabledHandler):
     def get(self):
