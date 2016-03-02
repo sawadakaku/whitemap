@@ -1,4 +1,3 @@
-import random
 import os
 import binascii
 import logging
@@ -32,12 +31,14 @@ class UploadHandler(SessionEnabledHandler):
         if not sessionID:
             sessionID = binascii.hexlify(os.urandom(8))
             self.session['sessionID'] = sessionID
-        route = mydb.Route(parent=ndb.Key('User', sessionID))
+        logging.info(self.request.arguments())
         for arg in self.request.arguments():
+            route = mydb.Route(parent=ndb.Key('User', sessionID))
             kml = self.request.get(arg)
             route.title = arg
             route.kml = kml
-        route.put()
+            logging.info(arg)
+            route.put()
 
 class WhitemapHandler(SessionEnabledHandler):
     def get(self):
@@ -74,10 +75,6 @@ class WhitemapHandler(SessionEnabledHandler):
         img = Image.new('RGB',(width+10,height+10),(255,255,255))
         for i in range(0,len(xs)):
             img.putpixel((int(xs[i])+5,height-int(ys[i])+5),(0,0,0))
-        #width,height = 100,100
-        #img = Image.new('RGB',(width+1,height+1),(255,255,255))
-        #for i in range(0,1000):
-        #    img.putpixel((random.randint(0,100),random.randint(0,100)),(0,0,0))
         output = StringIO()
         img.save(output, format='png')
         imagelayer = output.getvalue()

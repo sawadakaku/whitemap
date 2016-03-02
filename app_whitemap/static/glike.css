@@ -13,7 +13,7 @@ html,body{
   width: 70%;
   min-height: 100%;
   margin: 0 auto;
-  padding: 0 10;
+  padding: 0 10px 10px;
   box-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
 
@@ -83,4 +83,56 @@ h2{
     border-bottom: 1px solid #36e;
     font-size: 20px;
     font-weight: bold;
+}
+/* ダミーボタン用ボタン非表示 */
+input[type="file"]{
+    display: none;
+}
+a#btn-whitemap{
+    display: none;
+}
+
+/* ボタン用スタイル */
+#btn-group button{
+    background: #FFCC66;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #FFF;
+    font-size: large;
+    width: 200px;
+    padding: 10px 0;
+    -moz-box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+
+/* 要素をセンタリング */
+#btn-group , #text1{
+    text-align: center;
+}
+.icon{
+    display: block;
+    margin: 0 auto;
+}
+
+/* 文字サイズと色 */
+#text1{
+    color: #C0C0C0;
+}
+.largetext{
+    font-size: x-large;
+}
+.smalltext{
+    font-size: small;
+}
+
+/* drag-areaのスタイル */
+#drag-area{
+    margin: 10px 40px;
+    padding: 20px;
+    height: 350px;
+    border-width: medium;
+    border-color: #C0C0C0;
+    border-style: dashed;
 }
