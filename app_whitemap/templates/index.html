@@ -61,7 +61,7 @@
     =====================================*/
     function uploadFiles(files){
       //FormDataオブジェクトを用意
-      var fd = FormData();
+      var fd = new FormData();
       //ファイルの個数を取得
       var fileLength = files.length;
       //ファイル情報を追加
@@ -84,7 +84,7 @@
     /*=====================================
     img-whitemapを表示
     =====================================*/
-  function updateImgWM(){
+  function makeImgWM(){
     $.ajax({
       url:'/img-whitemap',
       cache:false,
@@ -94,7 +94,7 @@
     });
   }
   $('#make-whitemap').click(function(){
-    makeImagWM();
+    makeImgWM();
   });
     /*=====================================
     uploaded-routesを更新
