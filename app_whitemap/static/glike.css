@@ -88,12 +88,12 @@ h2{
 input[type="file"]{
     display: none;
 }
-a#btn-whitemap{
+input#btn-whitemap{
     display: none;
 }
 
 /* ボタン用スタイル */
-#btn-group button{
+#btn-group button , #group-makewhitemap button{
     background: #FFCC66;
     border: 1px solid #DDD;
     border-radius: 4px;
@@ -108,7 +108,7 @@ a#btn-whitemap{
 }
 
 /* 要素をセンタリング */
-#btn-group , #text1{
+#btn-group , #text1 , #group-makewhitemap{
     text-align: center;
 }
 .icon{
@@ -117,7 +117,7 @@ a#btn-whitemap{
 }
 
 /* 文字サイズと色 */
-#text1{
+#text1 , form[method='post']{
     color: #C0C0C0;
 }
 .largetext{
@@ -131,7 +131,7 @@ a#btn-whitemap{
 #drag-area{
     margin: 10px 40px;
     padding: 20px;
-    height: 350px;
+    height: 300px;
     border-width: medium;
     border-color: #C0C0C0;
     border-style: dashed;
