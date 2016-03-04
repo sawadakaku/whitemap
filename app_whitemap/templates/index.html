@@ -1,29 +1,21 @@
 {% extends "_base.html" %}
 {% block bodycontent %}
   <div id="drag-area">
-    <p>アップロードするファイルをドロップ</p>
-    <p>または</p>
+    <img src="/images/uploadicon1.png" class="icon"/>
+    <div id="text1">
+        <p class="largetext">アップロードするファイルをドロップ</p>
+        <p class="smalltext">または</p>
+    </div>
     <div id="btn-group">
       <input type="file" multiple="multiple"/>
-      <button id="btn">ファイルを選択</button>
-      <button id="make-whitemap">白地図を作成</button>
+      <p><button id="btn">ファイルを選択</button></p>
+      <a href='/img-whitemap' id='btn-whitemap'></a>
+      <p><button id="make-whitemap">白地図を作成</button></p>
     </div>  <!-- end btn-group -->
   </div>  <!-- end drag-area -->
-  <div id="img-whitemap">
-  </div>
   <div id="uploaded-routes">
     Loding...
   </div>
-
-  <style type="text/css">
-    #drag-area{
-      height: 20%;
-      background-color: #dde;
-    }
-    #input[type="file"]{
-      display: none;
-    }
-  </style>
 
   <script type="text/javascript">
     $(function(){
@@ -34,7 +26,7 @@
         //デフォルトの挙動を停止
         e.preventDefault();
         //ファイル情報を取得
-        var files = e.originalEvent.detaTransfer.files;
+        var files = e.originalEvent.dataTransfer.files;
         uploadFiles(files);
       }).bind('dragenter',function(){
         //デフォルトの挙動を停止
@@ -84,17 +76,8 @@
     /*=====================================
     img-whitemapを表示
     =====================================*/
-  function makeImgWM(){
-    $.ajax({
-      url:'/img-whitemap',
-      cache:false,
-      success:function(img){
-      $('#img-whitemap').html(img);
-      }
-    });
-  }
   $('#make-whitemap').click(function(){
-    makeImgWM();
+    $('#btn-whitemap')[0].click();
   });
     /*=====================================
     uploaded-routesを更新
