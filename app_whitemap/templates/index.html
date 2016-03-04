@@ -7,12 +7,24 @@
         <p class="smalltext">または</p>
     </div>
     <div id="btn-group">
-      <input type="file" multiple="multiple"/>
-      <p><button id="btn">ファイルを選択</button></p>
-      <a href='/img-whitemap' id='btn-whitemap'></a>
-      <p><button id="make-whitemap">白地図を作成</button></p>
+        <input type="file" multiple="multiple"/>
+        <p><button id="btn">ファイルを選択</button></p>
     </div>  <!-- end btn-group -->
   </div>  <!-- end drag-area -->
+  <div id='group-makewhitemap'>
+    <form method='post' action='/img-whitemap'>
+        <p>
+            <input type='radio' name='mapname' value='2'/> 
+            日本地図を表示しない<br/>
+            <input type='radio' name='mapname' value='1' checked='checked'/> 
+            日本地図を表示する(県境なし）<br/>
+            <input type='radio' name='mapname' value='0'/> 
+            日本地図を表示する（県境あり）<br/>
+        </p>
+        <input type='submit' id='btn-whitemap'/>
+    </form>
+    <p><button id="make-whitemap">白地図を作成</button></p>
+  </div>  <!-- end group-makewhitemap -->
   <div id="uploaded-routes">
     Loding...
   </div>

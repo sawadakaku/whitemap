@@ -41,7 +41,8 @@ class UploadHandler(SessionEnabledHandler):
             route.put()
 
 class WhitemapHandler(SessionEnabledHandler):
-    def get(self):
+    def post(self):
+        mapsort = ['japanmap_border.png','japanmap_noborder.png']
         sessionID = self.session.get('sessionID')
         routes_query = mydb.Route.query(ancestor=ndb.Key('User', sessionID))
         routes = routes_query.fetch(limit=100)
@@ -54,33 +55,18 @@ class WhitemapHandler(SessionEnabledHandler):
         inp = coordinate.split('\n')
         xs = list()
         ys = list()
-        logging.info(inp[0])
         for i in inp:
             s=i[0:-1].split(",")
             if len(s)==3:
                 xs.append(float(s[0]))
                 ys.append(float(s[1]))
-        mx = min(xs)
-        my = min(ys)
-        xs = map(lambda x:x-mx,xs)
-        ys = map(lambda x:x-my,ys)
-        mx = max(xs)
-        my = max(ys)
-        width = 1000
-        height = width/mx*my
-        xs = map(lambda x:x*width/mx, xs)
-        ys = map(lambda y:y*height/my,ys)
-        height = int(height)
+        mapname = self.request.get('mapname')
+        if mapname == '2':
+            functions.writemap_japandebug(self, xs, ys)
+#            functions.writemap(self, xs, ys)
+        else:
+            functions.writemap_japan(self, xs, ys, mapsort[int(mapname)])
 
-        img = Image.new('RGB',(width+10,height+10),(255,255,255))
-        for i in range(0,len(xs)):
-            img.putpixel((int(xs[i])+5,height-int(ys[i])+5),(0,0,0))
-        output = StringIO()
-        img.save(output, format='png')
-        imagelayer = output.getvalue()
-        output.close()
-        self.response.headers['Content-Type'] = 'image/png'
-        self.response.out.write(imagelayer)
 
 class UpdateHandler(SessionEnabledHandler):
     def get(self):
