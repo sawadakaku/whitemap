@@ -7,13 +7,21 @@
   <body>
     <div id="container">
       <div id="header">
-        <h1>
-          <a href="/index.html" class="selected">
-              <span>ルートラボ</span>から<br/>
-              <span>白地図</span>を<br/>r
-              作るやつ
-          </a>
-        </h1>
+        <div id="title">
+            <h1>
+              <a href="/index.html" class="selected">
+                  <span id="rootlab">ルートラボ</span>から<br/>
+                  <span id="whitemap">白地図</span>を<br/>
+                  <span id="making">作るやつ</span>
+              </a>
+            </h1>
+        </div> <!-- end title -->
+        <div id="menu">
+            <ul>
+                <li><a href="/index.html">TOP</a></li>
+                <li><a href="/howto.html">使い方</a></li>
+        </ul>
+        </div><!-- end menu -->
       </div> <!--- end header -->
       <div id="main">
         {% block bodycontent %}

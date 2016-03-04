@@ -2,10 +2,11 @@ body{
   font-family: arial,sans-serif;
 }
 html,body{
-  background: lightgrey;
+  background: #ffffee;
   height: 100%;
   margin: 0;
   padding: 0;
+  background-image: url("/images/backgroundmap1.png")
 }
 
 #container{
@@ -18,12 +19,13 @@ html,body{
 }
 
 #header{
-  background-color: #dde;
+  background-color: #99ccff;
   border-top: 3px solid #36c;
-  height: 20%;
+  height: auto;
   margin-bottom: 15px;
   overflow: hidden;
-  padding: 0 10;
+  padding: 0;
+  background-image: url("/images/backgroundmap.png")
 }
 
 a{
@@ -41,7 +43,6 @@ a:visited{
 a:hover{
   text-decoration: none;
   color: white;
-  background-color: navy;
 }
 
 a:active{
@@ -56,31 +57,66 @@ a.selected{
 
 #header h1 a{
   text-decoration: none;
-  color: black;
-}
-
-#header h1{
+  color: gray;
   font-size: 20px;
   float: left;
   vertical-align: middle;
+  letter-spacing: 0px;
+  line-height: 30px;
+  font-family: sans-serif;
+}
+#header h1 #rootlab{
+    font-size: 40px;
+    color: gray;
+}
+#header h1 #whitemap{
+    font-size: 40px;
+    color: white;
+}
+#header h1 #making{
+    font-size: 20px;
+    color: gray;
+}
+#header #title{
+    overflow: hidden;
+    padding: 0 10px 20px;
 }
 
-#header li{
-  font-size: 14px;
-  display: inline;
+#menu ul{
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-
-#header ul{
-  list-style: none;
-  float: right;
-  vertical-align: middle;
+#menu li{
+    display: inline;
+    padding: 0;
+    margin: 0;
+    margin-right: 3px;
+    float: left;
+}
+#menu li > a{
+    display: block;
+    border-bottom: 2px solid #36c;
+    background-color: #99ccff;
+    padding: 5px 3px 0;
+    text-decoration: none;
+    color: gray;
+    width: 100px;
+    margin: 0px 0px;
+    text-align: center;
+    font-size: 14px;
+}
+#menu li > a:hover{
+    background-color: #36c;
+    color: white;
 }
 
 h2{
     margin: 0 0 10px;
     padding: 15px;
-    border-left: 10px solid #36e;
-    border-bottom: 1px solid #36e;
+    border-left: 10px solid #36c;
+    border-bottom: 1px solid #36c;
     font-size: 20px;
     font-weight: bold;
 }
