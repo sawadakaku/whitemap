@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block bodycontent %}
+    <h2>”ルートラボから白地図を作るやつ”の使い方</h2>
+        <h3>ルートファイルをダウンロードする</h3>
+            ルートのページを開き，画面を下へスクロールします。”ルートのダウンロード”の項にある”KML"をクリックして，ルートファイルをダウンロードして保存します。このときファイル名が，それぞれのルートに固有のID（ランダムな英数字の並び）になってしまうので，自分で識別可能なファイル名をつけて保存するとよいでしょう。ダウンロードしたルートは専用のディレクトリ（フォルダ）をつくってまとめておいた方が後の作業で便利です。
+            <img src="/images/downfiles1.png" class="photo"/>
+            <img src="/images/downfiles2.png" class="photo"/>
+        <h3>ファイルをアップロードする</h3>
+            次にこのサイトの<a href="index">トップページ</a>を開き，先ほど保存したファイルを破線の枠内でドラックアンドドロップします。もしくは，”ファイルをアップロード”のボタンをクリックしてファイルを選択します。このとき一度に複数のファイルを選択することができます。アップロードが成功すると，画面下側の”アップロードされたファイル”の欄にファイル名が表示されます。1ファイルにつき1MBをこえるとファイルをアップロードできません。分割するなどで対応してください。およそ1,500㎞のルートで1MB程度になります。
+            <img src="/images/uploadfiles1.png" class="photo"/>
+            <img src="/images/uploadfiles2.png" class="photo"/>
+        <h3>白地図を生成する</h3>
+            全てのファイルをアップロードしたら白地図を生成します。ルートと共に日本地図（海岸線や県境）を表示するかどうかを選択し，”白地図を生成する”ボタンをクリックします。サーバー側で画像ファイルを保持していないためか白地図画像は右クリックで保存することができないようです。スクリーンショットやSnippingTool（Windowsならスタートボタン→アクセサリから起動できるはず）を使って保存してください。
+            <img src="/images/makewhitemap1.png" class="photo"/>
+            <img src="/images/makewhitemap2.png" class="photo"/>
+    <h2>その他</h2>
+        <h3>長いルートを作るには</h3>
+            ルートラボでは8000点（ファイルに保存される座標ポイントの数？）を超えるルートは保存できません。しかし”ルートを描く”画面から直接エクスポートして自分のコンピュータに保存することはできるようです。8000点以上のルートを作成し，その画面で”エクスポート”ボタンをクリックして保存します。このときファイルの種類をKML filesにすることを忘れないでください。また1MBを超えるファイルはアップロードできないので注意してください。1500km程度を目安に分割するのがよいと思います。
+            <img src="/images/longroutes1.png" class="photo"/>
+        <h3>Special Thanks</h3>
+        KMLファイルからルートを生成するプログラムはakawashiroさんのコードを参考にしています（<a href="https://github.com/akawashiro/whitemap">https://github.com/akawashiro/whitemap</a>）<br/>
+        白地図（日本の海岸線と県境）の画像はカビパン男さんの作成した白地図を加工して使用しています。（カビパン男と私 日本の白地図:<a href="http://www.kabipan.com/geography/whitemap/">http://www.kabipan.com/geography/whitemap/</a> , 利用許諾:<a href="http://creativecommons.org/licenses/by-nc/2.1/jp/">http://creativecommons.org/licenses/by-nc/2.1/jp/</a>）
+{% endblock %}

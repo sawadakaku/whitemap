@@ -40,6 +40,10 @@ class UploadHandler(SessionEnabledHandler):
             logging.info(arg)
             route.put()
 
+class HowToHandler(SessionEnabledHandler):
+    def get(self):
+        functions.dorender(self, '/howto.html')
+
 class WhitemapHandler(SessionEnabledHandler):
     def post(self):
         mapsort = ['japanmap_border.png','japanmap_noborder.png']
@@ -86,6 +90,7 @@ config['webapp2_extras.sessions'] = {
 logging.getLogger().setLevel(logging.DEBUG)
 
 app = webapp2.WSGIApplication([('/upload', UploadHandler),
+                               ('/howto', HowToHandler),
                                ('/img-whitemap', WhitemapHandler),
                                ('/update', UpdateHandler),
                                ('/.*', MainPage),],

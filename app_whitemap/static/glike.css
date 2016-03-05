@@ -14,7 +14,7 @@ html,body{
   width: 70%;
   min-height: 100%;
   margin: 0 auto;
-  padding: 0 10px 10px;
+  padding: 0;
   box-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
 
@@ -28,12 +28,16 @@ html,body{
   background-image: url("/images/backgroundmap.png")
 }
 
+#main{
+    margin: 0 10px;
+}
+
 a{
   font-weight: bold;
 }
 
 a:link{
-  color: black;
+  color: gray;
 }
 
 a:visited{
@@ -42,7 +46,7 @@ a:visited{
 
 a:hover{
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 a:active{
@@ -171,4 +175,28 @@ input#btn-whitemap{
     border-width: medium;
     border-color: #C0C0C0;
     border-style: dashed;
+}
+
+/*howtoページの画像用スタイル*/
+.photo{
+    display: block;
+    margin: 10px auto;
+    width: 600px;
+}
+
+#footer{
+  background-color: #99ccff;
+  border-bottom: 3px solid #36c;
+  height: auto;
+  margin: 0;
+  margin-top: 30px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+#copyright{
+    font-size: small;
+    color: gray;
+    margin-left: 1em;
+    text-indent: -1em;
 }
