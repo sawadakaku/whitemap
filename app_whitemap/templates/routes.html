@@ -1,6 +1,13 @@
-<h2>アップロードされたファイル</h2>
-{% for route in routes %}
-  <p>
-    {{route.title}}
-  </p>
-{% endfor %}
+<table class="uploaded-files">
+    <tbody>
+        <tr>
+            <th class="r1">ファイル名</th>
+            <th class="r2">アップロード時刻</th>
+        </tr>
+        {% for route in routes %}
+            <tr>
+                <td class="r1">{{route.title}}</td>
+                <td class="r2">{{route.time|timeJST}}</td> </tr>
+        {% endfor %}
+    </tbody>
+</table>
