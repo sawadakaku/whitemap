@@ -1,0 +1,5 @@
+cron:
+- description: daily RouteFiles maintainance
+  url: /maintain/routefiles
+  schedule: every 24 hours
+

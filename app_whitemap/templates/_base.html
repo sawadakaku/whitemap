@@ -7,19 +7,35 @@
   <body>
     <div id="container">
       <div id="header">
-        <h1>
-          <a href="/index.html" class="selected">
-              <span>ルートラボ</span>から<br/>
-              <span>白地図</span>を<br/>r
-              作るやつ
-          </a>
-        </h1>
+        <div id="title">
+            <h1>
+              <a href="/index" class="selected">
+                  <span id="rootlab">ルートラボ</span>から<br/>
+                  <span id="whitemap">白地図</span>を<br/>
+                  <span id="making">作るやつ</span>
+              </a>
+            </h1>
+        </div> <!-- end title -->
+        <div id="menu">
+            <ul>
+                <li><a href="/index">TOP</a></li>
+                <li><a href="/howto">使い方</a></li>
+        </ul>
+        </div><!-- end menu -->
       </div> <!--- end header -->
       <div id="main">
         {% block bodycontent %}
           Replace this
         {% endblock %}
       </div> <!--- end main -->
+      <div id="footer">
+        <div id="copyright">
+            Copyright © 2016 KAKU SAWADA<br/>
+            生成される白地図には以下の画像を加工して使用しています。<br/>
+            カビパン男と私”日本の白地図”<a href="http://www.kabipan.com/geography/whitemap/">http://www.kabipan.com/geography/whitemap/</a><br/>
+            （使用許諾:<a href="http://creativecommons.org/licenses/by-nc/2.1/jp/">http://creativecommons.org/licenses/by-nc/2.1/jp/</a>）
+        </div> <!-- end copyright -->
+      </div> <!-- end footer -->
     </div> <!-- end container -->
   </body>
 </html>

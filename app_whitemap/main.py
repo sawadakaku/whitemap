@@ -3,8 +3,6 @@ import binascii
 import logging
 import webapp2
 import xml.etree.ElementTree as ET
-from PIL import Image
-from cStringIO import StringIO
 from webapp2_extras import sessions
 from google.appengine.ext import ndb
 from modules import mydb
@@ -31,14 +29,20 @@ class UploadHandler(SessionEnabledHandler):
         if not sessionID:
             sessionID = binascii.hexlify(os.urandom(8))
             self.session['sessionID'] = sessionID
-        logging.info(self.request.arguments())
         for arg in self.request.arguments():
-            route = mydb.Route(parent=ndb.Key('User', sessionID))
-            kml = self.request.get(arg)
-            route.title = arg
-            route.kml = kml
-            logging.info(arg)
-            route.put()
+            try:
+                route = mydb.Route(parent=ndb.Key('User', sessionID))
+                kml = self.request.get(arg)
+                route.title = arg
+                route.kml = kml
+                logging.info(arg)
+                route.put()
+            except Exception as e:
+                logging.info(e.message)
+
+class HowToHandler(SessionEnabledHandler):
+    def get(self):
+        functions.dorender(self, '/howto.html')
 
 class WhitemapHandler(SessionEnabledHandler):
     def post(self):
@@ -73,10 +77,20 @@ class UpdateHandler(SessionEnabledHandler):
         sessionID = self.session.get('sessionID')
         try:
             routes_query = mydb.Route.query(ancestor=ndb.Key('User', sessionID))
-            routes = routes_query.fetch(limit=100)
+            routes = routes_query.order(mydb.Route.time)
             functions.dorender(self, '/routes.html', {'routes':routes})
         except:
             functions.dorender(self, '/routes.html')
+
+class ResetHandler(SessionEnabledHandler):
+    def get(self):
+        sessionID = self.session.get('sessionID')
+        try:
+            routes_query = mydb.Route.query(ancestor=ndb.Key('User', sessionID))
+            list_of_key = ndb.put_multi(routes_query)
+            ndb.delete_multi(list_of_key)
+        except Exception as e:
+            logging.info(e.message)
 
 config = {}
 config['webapp2_extras.sessions'] = {
@@ -86,8 +100,10 @@ config['webapp2_extras.sessions'] = {
 logging.getLogger().setLevel(logging.DEBUG)
 
 app = webapp2.WSGIApplication([('/upload', UploadHandler),
+                               ('/howto', HowToHandler),
                                ('/img-whitemap', WhitemapHandler),
                                ('/update', UpdateHandler),
+                               ('/reset', ResetHandler),
                                ('/.*', MainPage),],
                                config=config,
                                debug=True)
