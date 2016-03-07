@@ -19,13 +19,12 @@ html,body{
 }
 
 #header{
-  background-color: #00bdd4;
   border-top: 6px solid #0097a7;
   height: auto;
   margin-bottom: 15px;
   overflow: hidden;
   padding: 0;
-  background-image: url("/images/backgroundmap.png")
+  background: #00bdd4 url("/images/backgroundmap.png") 100% 0% no-repeat;
 }
 
 #main{
