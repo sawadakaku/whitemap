@@ -48,7 +48,7 @@ def writemap_japan(handler, xs, ys, mapname):
     ys = map(lambda y:15 + (45.5222-y)*1090.0/15.2894, ys)
     img = Image.open(mapname, 'r')
     for i in range(0,len(xs)):
-        img.putpixel((int(xs[i]),int(ys[i])),(255,0,0))
+        img.putpixel((int(xs[i]),int(ys[i])),(0,0,255))
     output = StringIO()
     img.save(output, format='png')
     imagelayer = output.getvalue()
@@ -56,12 +56,12 @@ def writemap_japan(handler, xs, ys, mapname):
     handler.response.headers['Content-Type'] = 'image/png'
     handler.response.out.write(imagelayer)
 
-def writemap_japandebug(handler, xs, ys):
+def writemap_nojapan(handler, xs, ys):
     xs = map(lambda x:10 + (x-128.5988)*965.0/17.2132, xs)
     ys = map(lambda y:15 + (45.5222-y)*1090.0/15.2894, ys)
     img = Image.new('RGB',(1000,1150),(255,255,255))
     for i in range(0,len(xs)):
-        img.putpixel((int(xs[i]),int(ys[i])),(255,0,0))
+        img.putpixel((int(xs[i]),int(ys[i])),(0,0,255))
     output = StringIO()
     img.save(output, format='png')
     imagelayer = output.getvalue()

@@ -66,7 +66,7 @@ class WhitemapHandler(SessionEnabledHandler):
                 ys.append(float(s[1]))
         mapname = self.request.get('mapname')
         if mapname == '2':
-            functions.writemap_japandebug(self, xs, ys)
+            functions.writemap_nojapan(self, xs, ys)
 #            functions.writemap(self, xs, ys)
         else:
             functions.writemap_japan(self, xs, ys, mapsort[int(mapname)])
