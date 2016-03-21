@@ -86,7 +86,7 @@
         processData:false,
         contentType:false,
         success:function(data){
-          console.log('ファイルがアップロードされました。')
+          updateRoutes();
         }
       });
     }
@@ -108,9 +108,7 @@
         $('#uploaded-routes').html(routes);
       }
     });
-    setTimeout('updateRoutes()',4000);
   }
-  updateRoutes();
     /*=====================================
     reset-filesがクリックされたときの処理
     =====================================*/
@@ -119,7 +117,7 @@
       url:'/reset',
       type:'GET',
       success:function(data){
-        console.log('ファイルをリセットしました')
+        updateRoutes();
       }
     });
   });
