@@ -35,7 +35,6 @@ class UploadHandler(SessionEnabledHandler):
                 kml = self.request.get(arg)
                 route.title = arg
                 route.kml = kml
-                logging.info(arg)
                 route.put()
             except Exception as e:
                 logging.info(e.message)
@@ -53,7 +52,6 @@ class WhitemapHandler(SessionEnabledHandler):
         prefix = "{http://www.opengis.net/kml/2.2}"
         coordinate = ''
         for route in routes:
-            logging.info(type(route.kml.encode('utf-8')))
             root = ET.fromstring(route.kml.encode('utf-8'))
             coordinate = coordinate + root.find(prefix+"Document").find(prefix+"Placemark").find(prefix+"LineString").find(prefix+"coordinates").text + '\n'
         inp = coordinate.split('\n')
